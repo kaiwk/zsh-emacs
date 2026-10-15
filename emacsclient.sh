@@ -24,7 +24,7 @@
 _emacsfun()
 {
     # get list of emacs frames.
-    frameslist=`emacsclient --alternate-editor '' --eval '(frame-list)' 2>/dev/null | egrep -o '(frame)+'`
+    frameslist=`emacsclient --alternate-editor '' --eval '(frame-list)' 2>/dev/null | grep -E -o '(frame)+'`
 
     if [ "$(echo "$frameslist" | sed -n '$=')" -ge 2 ] ;then
         # prevent creating another X frame if there is at least one present.
