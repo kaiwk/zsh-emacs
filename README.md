@@ -47,3 +47,12 @@ to jump the shell to the directory of the file you're editing:
 ```zsh
 cd "$(ecd)"
 ```
+
+## Reading from stdin
+
+Pipe anything into `e -` (or `te -` for a terminal frame) and the
+launcher writes it to a temporary file and opens that in Emacs:
+
+```zsh
+grep -rn TODO src/ | e -
+```
