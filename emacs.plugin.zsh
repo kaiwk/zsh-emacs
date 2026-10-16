@@ -100,3 +100,19 @@ function cde {
   dir="$(ecd)" || return $?
   cd "$dir"
 }
+
+# Compare two files with Emacs ediff. Paths are made absolute because
+# the daemon's working directory may differ from the shell's.
+function ediff {
+  if [[ $# -ne 2 ]]; then
+    echo "Usage: ediff FILE1 FILE2" >&2
+    return 1
+  fi
+
+  # Escape for the Emacs Lisp string literal.
+  local a="${1:a}" b="${2:a}"
+  a="${a//\\/\\\\}"; a="${a//\"/\\\"}"
+  b="${b//\\/\\\\}"; b="${b//\"/\\\"}"
+
+  "$EMACS_PLUGIN_LAUNCHER" --eval "(ediff-files \"$a\" \"$b\")"
+}
