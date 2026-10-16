@@ -114,7 +114,9 @@ function ediff {
   a="${a//\\/\\\\}"; a="${a//\"/\\\"}"
   b="${b//\\/\\\\}"; b="${b//\"/\\\"}"
 
-  "$EMACS_PLUGIN_LAUNCHER" --eval "(ediff-files \"$a\" \"$b\")"
+  # Run in a fresh frame: reusing the selected window can fail with
+  # "window too small for splitting" when it is already heavily split.
+  "$EMACS_PLUGIN_LAUNCHER" --create-frame --eval "(ediff-files \"$a\" \"$b\")"
 }
 
 # Open magit-status for DIR (default: the current directory) in a
