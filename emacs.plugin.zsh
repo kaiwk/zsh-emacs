@@ -92,3 +92,11 @@ function ecd {
   file="$(efile)" || return $?
   echo "${file:h}"
 }
+
+# Change the shell's working directory to the directory of the file
+# opened in the current buffer.
+function cde {
+  local dir
+  dir="$(ecd)" || return $?
+  cd "$dir"
+}

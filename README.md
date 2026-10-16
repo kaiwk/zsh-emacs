@@ -35,18 +35,16 @@ The plugin uses a custom launcher (which we'll call here `$EMACS_LAUNCHER`) that
 
 ## Functions
 
-| Function | Description                                                |
-| -------- | ---------------------------------------------------------- |
-| efile    | Print the path to the file open in the current buffer      |
-| ecd      | Print the directory of the file open in the current buffer |
+| Function | Description                                                          |
+| -------- | -------------------------------------------------------------------- |
+| efile    | Print the path to the file open in the current buffer                |
+| ecd      | Print the directory of the file open in the current buffer           |
+| cde      | cd to the directory of the file open in the current buffer           |
 
-Both query the running Emacs daemon, so the "current buffer" is the
-selected window of whichever frame was last active. A typical use is
-to jump the shell to the directory of the file you're editing:
-
-```zsh
-cd "$(ecd)"
-```
+These query the running Emacs daemon, so the "current buffer" is the
+selected window of whichever frame was last active. `cde` is just
+`cd "$(ecd)"`, jumping the shell to the directory of the file you're
+editing.
 
 ## Reading from stdin
 
