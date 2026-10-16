@@ -33,17 +33,6 @@
 # - You can share opened buffered across opened frames.
 # - Configuration changes made at runtime are applied to all frames.
 
-# Emacs 23 daemon capability is a killing feature.
-# One emacs process handles all your frames whether
-# you use a frame opened in a terminal via a ssh connection or X frames
-# opened on the same host.
-
-# Benefits are multiple
-# - You don't have the cost of starting Emacs all the time anymore
-# - Opening a file is as fast as Emacs does not have anything else to do.
-# - You can share opened buffered across opened frames.
-# - Configuration changes made at runtime are applied to all frames.
-
 # Require emacs version to be minimum 24
 autoload -Uz is-at-least
 is-at-least 24 "${${(Az)"$(emacsclient --version 2>/dev/null)"}[2]}" || return 0
