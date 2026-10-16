@@ -30,7 +30,7 @@
 # Benefits are multiple
 # - You don't have the cost of starting Emacs all the time anymore
 # - Opening a file is as fast as Emacs does not have anything else to do.
-# - You can share opened buffered across opened frames.
+# - You can share opened buffers across opened frames.
 # - Configuration changes made at runtime are applied to all frames.
 
 # Require emacs version to be minimum 24
