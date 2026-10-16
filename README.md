@@ -25,15 +25,25 @@ antigen bundle flinner/zsh-emacs
 
 The plugin uses a custom launcher (which we'll call here `$EMACS_LAUNCHER`) that is just a wrapper around [`emacsclient`](https://www.emacswiki.org/emacs/EmacsClient).
 
-| Alias  | Command                                                                     | Description                                                    |
-| ------ | --------------------------------------------------------------------------- | -------------------------------------------------------------- |
-| emacs  | `$EMACS_LAUNCHER --no-wait`                                                 | Opens a temporary emacsclient frame                            |
-| e      | `emacs`                                                                     | Same as emacs alias                                            |
-| te     | `$EMACS_LAUNCHER -nw`                                                       | Open terminal emacsclient                                      |
-| eeval  | `$EMACS_LAUNCHER --eval`                                                    | Same as `M-x eval` but from outside Emacs                      |
-| magit  | `$EMACS_LAUNCHER --eval (magit)`                                            | Open emacsclient frame with magit, accepts directory argument  |
-| tmagit | `$EMACS_LAUNCHER -nw --eval (magit)`                                        | same as `magit` but opens in terminal                          |
-| mframe | `emacsclient --alternate-editor "" --create-frame --eval (magit) --no-wait` | Create new X frame with magit, accepts directory argument      |
-| eframe | `emacsclient --alternate-editor "" --create-frame`                          | Create new X frame                                             |
-| efile  | -                                                                           | Print the path to the file open in the current buffer          |
-| ecd    | -                                                                           | Print the directory of the file open in the the current buffer |
+| Alias  | Command                                            | Description                               |
+| ------ | -------------------------------------------------- | ----------------------------------------- |
+| emacs  | `$EMACS_LAUNCHER --no-wait`                        | Opens a temporary emacsclient frame       |
+| e      | `emacs`                                            | Same as emacs alias                       |
+| te     | `$EMACS_LAUNCHER -nw`                              | Open terminal emacsclient                 |
+| eeval  | `$EMACS_LAUNCHER --eval`                           | Same as `M-x eval` but from outside Emacs |
+| eframe | `emacsclient --alternate-editor "" --create-frame` | Create new X frame                        |
+
+## Functions
+
+| Function | Description                                                |
+| -------- | ---------------------------------------------------------- |
+| efile    | Print the path to the file open in the current buffer      |
+| ecd      | Print the directory of the file open in the current buffer |
+
+Both query the running Emacs daemon, so the "current buffer" is the
+selected window of whichever frame was last active. A typical use is
+to jump the shell to the directory of the file you're editing:
+
+```zsh
+cd "$(ecd)"
+```
