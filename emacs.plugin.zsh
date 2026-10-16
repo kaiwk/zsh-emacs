@@ -116,3 +116,16 @@ function ediff {
 
   "$EMACS_PLUGIN_LAUNCHER" --eval "(ediff-files \"$a\" \"$b\")"
 }
+
+# Open magit-status for DIR (default: the current directory) in a
+# terminal frame. The directory is passed to Emacs instead of cd-ing
+# the shell.
+function magit {
+  local dir="${1:-$PWD}"
+  dir="${dir:a}"
+  # Escape for the Emacs Lisp string literal.
+  dir="${dir//\\/\\\\}"
+  dir="${dir//\"/\\\"}"
+
+  "$EMACS_PLUGIN_LAUNCHER" -nw --eval "(magit-status \"$dir\")"
+}
